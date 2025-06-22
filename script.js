@@ -135,20 +135,22 @@ function updateFlower() {
   }
 }
 
+
 function harvest() {
   const currentIndex = flowerOrder.indexOf(flowerType);
   const nextIndex = (currentIndex + 1) % flowerOrder.length;
   const nextFlower = flowerOrder[nextIndex];
   let seeds = JSON.parse(localStorage.getItem(unlockedSeedsKey)) || [];
 
-  if (seeds.includes(nextFlower)) {
-    flowerType = nextFlower;
-    seeds = seeds.filter(s => s !== nextFlower);
-    alert(`${nextFlower}の種を植えました！`);
-  } else {
-    flowerType = "チューリップ";
-    alert("新しい種がないため、チューリップを植えました。");
+  if (!seeds.includes(nextFlower)) {
+    seeds.push(nextFlower);  // 収穫で新種を追加
   }
+
+  localStorage.setItem(unlockedSeedsKey, JSON.stringify(seeds));
+
+  flowerType = nextFlower;
+  seeds = seeds.filter(s => s !== nextFlower);
+  alert(`${nextFlower}の種を植えました！`);
 
   localStorage.setItem(unlockedSeedsKey, JSON.stringify(seeds));
   localStorage.setItem(currentFlowerKey, flowerType);
@@ -158,6 +160,7 @@ function harvest() {
   showSeedInventory();
   location.reload();
 }
+
 
 function grantNewSeed() {
   let streak = parseInt(localStorage.getItem(streakKey) || "0");
