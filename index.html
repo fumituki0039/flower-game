@@ -1,0 +1,16 @@
+<h1>花を育てよう</h1>
+<div id="dateDisplay"></div>
+
+<div id="setup" class="goal-inputs">
+<p>目標を10個まで入力してください（初回のみ）</p>
+<div id="goalInputs"></div>
+<button onclick="saveGoals()">保存してスタート</button>
+</div>
+
+<div id="game" class="hidden">
+<div id="waterDisplay">水やり回数: 0</div>
+<img id="flowerImage" class="flower-image" src="" alt="flower" />
+<div class="goal-list" id="goalList"></div>
+<button id="harvestBtn" class="hidden" onclick="harvest()">収穫する</button>
+<div id="seedBox"></div>
+</div>
