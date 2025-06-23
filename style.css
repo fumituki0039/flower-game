@@ -1,0 +1,18 @@
+body {
+  font-family: sans-serif;
+  background: #fef9f4;
+  text-align: center;
+  padding: 20px;
+}
+
+.goal-inputs input {
+  margin-bottom: 5px;
+}
+
+.hidden {
+  display: none;
+}
+
+button {
+  margin-top: 10px;
+}
