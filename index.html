@@ -21,9 +21,25 @@
     <img id="flowerImage" src="" alt="flower" width="200" />
     <br />
     <button id="harvestBtn" class="hidden" onclick="harvest()">収穫する</button>
-    <button id="editGoalsBtn" onclick="editGoals()">目標を編集する</button>>
+    <button id="editGoalsBtn" onclick="editGoals()">目標を編集する</button>
+    <div id="backgroundSelector">
+      <label for="bgColor">背景を選んでください:</label>
+      <select id="bgColor" onchange="changeBackgroundColor()">
+        <option value="#f8d7da">くすみ赤</option>
+        <option value="#fce4ec">パステルピンク</option>
+        <option value="#bbdefb">くすみ青</option>
+        <option value="#e3f2fd">パステル水色</option>
+        <option value="#fff9c4">くすみ黄色</option>
+        <option value="#ffe0b2">くすみオレンジ</option>
+        <option value="#d1c4e9">くすみ紫</option>
+        <option value="#cfd8dc">くすみグレー</option>
+        <option value="#dcedc8">くすみ緑</option>
+        <option value="#f0f4c3">くすみ黄緑</option>
+      </select>
+    </div>
   </div>
 
   <script src="script.js"></script>
 </body>
 </html>
+
