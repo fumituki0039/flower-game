@@ -15,4 +15,33 @@ body {
 
 button {
   margin-top: 10px;
+  background-color: #fddde6;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 20px;
+  color: #333;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #fbb8cf;
+}
+
+@media (max-width: 600px) {
+  body {
+    padding: 10px;
+  }
+
+  h1 {
+    font-size: 1.8em;
+  }
+
+  button {
+    width: 100%;
+    font-size: 0.9em;
+  }
+
+  img {
+    width: 150px;
+  }
 }
