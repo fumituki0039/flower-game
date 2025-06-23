@@ -1,32 +1,8 @@
-
 const flowerImages = {
-  "チューリップ": ["https://i.imgur.com/eufdO25.png", "https://i.imgur.com/XmCOi5q.png", "https://i.imgur.com/bWZoPZE.png"],
-  "ひまわり": ["https://i.imgur.com/Kb4QaOk.png", "https://i.imgur.com/gUTrmYM.png", "https://i.imgur.com/1l94l7N.png"],
-  "ダリア": ["https://i.imgur.com/S0zEQC9.png", "https://i.imgur.com/J94U3wg.png", "https://i.imgur.com/bvKgwsv.png"],
-  "パンジー": ["https://i.imgur.com/5HtJAAm.png", "https://i.imgur.com/12I9SvM.png", "https://i.imgur.com/DWVk7Rm.png"],
-  "たんぽぽ": ["https://i.imgur.com/uUljbtk.png", "https://i.imgur.com/ooju9UP.png", "https://i.imgur.com/NY2ArNg.png"],
-  "ノースポール": ["https://i.imgur.com/KWi6yxW.png", "https://i.imgur.com/Zomu92R.png", "https://i.imgur.com/U3dybcw.png"],
-  "紫陽花": ["https://i.imgur.com/IEuiffh.png", "https://i.imgur.com/PIUJxMo.png", "https://i.imgur.com/VUs6wAM.png"],
-  "牡丹": ["https://i.imgur.com/raNKKSy.png", "https://i.imgur.com/67KjwRa.png", "https://i.imgur.com/kRogF9j.png"],
-  "鈴蘭": ["https://i.imgur.com/LTXCMJw.png", "https://i.imgur.com/3MIPBLA.png", "https://i.imgur.com/DmPQyVC.png"],
-  "百合": ["https://i.imgur.com/5zLTXOr.png", "https://i.imgur.com/vAK02qE.png", "https://i.imgur.com/XmJclu2.png"],
-  "薔薇": ["https://i.imgur.com/raNKKSy.png", "https://i.imgur.com/QXGc89i.png", "https://i.imgur.com/S1wnEto.png"],
-  "菜の花": ["https://i.imgur.com/IEuiffh.png", "https://i.imgur.com/XD4SHrE.png", "https://i.imgur.com/wZ7NO1c.png"],
-  "桜": ["https://i.imgur.com/sFzLxOT.png", "https://i.imgur.com/z0oMg4T.png", "https://i.imgur.com/ntaV1O0.png"],
-  "ラベンダー": ["https://i.imgur.com/LTXCMJw.png", "https://i.imgur.com/lqXySOx.png", "https://i.imgur.com/A1NOyBy.png"],
-  "勿忘草": ["https://i.imgur.com/KWi6yxW.png", "https://i.imgur.com/z4z0eif.png", "https://i.imgur.com/1hIBOUb.png"],
-  "マリーゴールド": ["https://i.imgur.com/IEuiffh.png", "https://i.imgur.com/YZI3Aq7.png", "https://i.imgur.com/2oxlsKZ.png"],
-  "アネモネ": ["https://i.imgur.com/5zLTXOr.png", "https://i.imgur.com/yT1g3hM.png", "https://i.imgur.com/o0dqJ06.png"],
-  "デージー": ["https://i.imgur.com/LTXCMJw.png", "https://i.imgur.com/SdfVvPp.png", "https://i.imgur.com/pLjzW6q.png"]
+  "チューリップ": ["https://i.imgur.com/eufdO25.png", "https://i.imgur.com/XmCOi5q.png", "https://i.imgur.com/bWZoPZE.png"]
 };
 
-const flowerRotation = [
-  "チューリップ", "ひまわり", "ダリア", "パンジー", "たんぽぽ",
-  "ガーベラ", "桜", "アネモネ", "ムスカリ", "菜の花",
-  "鈴蘭", "ラベンダー", "薔薇", "ノースポール", "マリーゴールド",
-  "牡丹", "百合", "紫陽花"
-];
-
+const flowerRotation = ["チューリップ", "ひまわり", "ダリア"];
 let waterCount = 0;
 let stage = 0;
 
@@ -39,12 +15,14 @@ function saveGoals() {
     }
   }
 
+  if (goals.length === 0) {
+    alert("目標を1つ以上入力してください！");
+    return;
+  }
+
   localStorage.setItem("goals", JSON.stringify(goals));
   localStorage.setItem("goalsSet", "true");
-  if (!localStorage.getItem("currentFlower")) {
-    localStorage.setItem("currentFlower", "チューリップ");
-  }
-  document.getElementById("setup").style.display = "none";
+  alert("目標を保存しました！");
   showGame();
 }
 
@@ -92,6 +70,7 @@ function showGame() {
 function checkGoals() {
   const goals = JSON.parse(localStorage.getItem("goals") || "[]");
   let allChecked = true;
+
   goals.forEach((_, index) => {
     if (!document.getElementById(`checkbox${index}`).checked) {
       allChecked = false;
@@ -140,7 +119,6 @@ function harvest() {
   waterCount = 0;
   updateWaterDisplay();
 
-  // 次の花へローテーション
   const current = localStorage.getItem("currentFlower") || "チューリップ";
   const currentIndex = flowerRotation.indexOf(current);
   const nextIndex = (currentIndex + 1) % flowerRotation.length;
@@ -150,19 +128,36 @@ function harvest() {
   updateFlowerImage();
 }
 
+function changeBackgroundColor() {
+  const selectedColor = document.getElementById("bgColor").value;
+  document.body.style.backgroundColor = selectedColor;
+  localStorage.setItem("backgroundColor", selectedColor);
+}
+
 function editGoals() {
-  if (confirm("現在の目標を編集しますか？（内容は上書きされます）")) {
-    localStorage.removeItem("goalsSet");
-    localStorage.removeItem("goals");
-    document.getElementById("game").classList.add("hidden");
-    setupGoalInputs();
-    document.getElementById("setup").style.display = "block";
-  }
+  document.getElementById("game").classList.add("hidden");
+  setupGoalInputs();
+  const savedGoals = JSON.parse(localStorage.getItem("goals") || "[]");
+
+  savedGoals.forEach((goal, index) => {
+    const input = document.getElementById(`goal${index}`);
+    if (input) {
+      input.value = goal;
+    }
+  });
+
+  document.getElementById("setup").style.display = "block";
 }
 
 window.onload = function () {
   const today = new Date().toLocaleDateString();
   document.getElementById("dateDisplay").innerText = `今日の日付: ${today}`;
+
+  const savedColor = localStorage.getItem("backgroundColor");
+  if (savedColor) {
+    document.body.style.backgroundColor = savedColor;
+    document.getElementById("bgColor").value = savedColor;
+  }
 
   if (localStorage.getItem("goalsSet") === "true") {
     showGame();
@@ -170,4 +165,3 @@ window.onload = function () {
     setupGoalInputs();
     document.getElementById("setup").style.display = "block";
   }
-};
