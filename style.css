@@ -2,11 +2,41 @@ body {
   font-family: sans-serif;
   background: #fef9f4;
   text-align: center;
-  padding: 20px;
+  padding: 30px; /* 全体のパディングを増やす */
+  font-size: 18px; /* 基本フォントサイズを少し大きくする */
+  margin: 0; /* bodyのデフォルトマージンをリセット */
+}
+
+h1 {
+  font-size: 2.5em; /* タイトルサイズを調整 */
+  margin-bottom: 25px; /* タイトルの下部にスペース */
+}
+
+/* 日付表示 */
+#dateDisplay {
+  font-size: 1.1em;
+  margin-bottom: 20px;
+  color: #555;
+}
+
+.goal-inputs {
+  margin-bottom: 30px; /* 目標入力セクションの下部にスペース */
+}
+
+.goal-inputs p {
+  font-size: 1.1em;
+  margin-bottom: 15px;
 }
 
 .goal-inputs input {
-  margin-bottom: 5px;
+  margin-bottom: 8px; /* 入力フィールドの下マージンを増やす */
+  padding: 10px; /* 入力フィールドのパディングを増やす */
+  font-size: 1.1em; /* 入力フィールドの文字サイズを大きくする */
+  width: 300px; /* 入力フィールドのデフォルト幅を調整 */
+  max-width: 80%; /* 幅が画面をはみ出さないように最大幅を設定 */
+  box-sizing: border-box; /* パディングとボーダーを幅に含める */
+  border: 1px solid #ddd;
+  border-radius: 4px;
 }
 
 .hidden {
@@ -14,34 +44,178 @@ body {
 }
 
 button {
-  margin-top: 10px;
+  margin-top: 15px; /* 上部のマージンを増やす */
   background-color: #fddde6;
   border: none;
   border-radius: 5px;
-  padding: 10px 20px;
+  padding: 12px 25px; /* ボタンのパディングを増やす */
   color: #333;
   cursor: pointer;
+  font-size: 1.1em; /* ボタンの文字サイズを大きくする */
+  transition: background-color 0.3s ease; /* ホバー時のアニメーション */
 }
 
 button:hover {
   background-color: #fbb8cf;
 }
 
+/* ゲーム画面のスタイル */
+#game {
+  padding: 20px 0;
+}
+
+#goalList {
+  margin-top: 25px;
+  margin-bottom: 30px;
+  text-align: left; /* 目標リストを左寄せ */
+  display: inline-block; /* 中央寄せするためにブロック要素をインラインブロックに */
+  max-width: 90%; /* 幅を調整 */
+}
+
+#goalList div { /* 各目標のラッパー */
+  margin-bottom: 10px;
+}
+
+#goalList input[type="checkbox"] {
+  margin-right: 8px;
+  transform: scale(1.2); /* チェックボックスを少し大きくする */
+  vertical-align: middle; /* テキストと高さを合わせる */
+}
+
+#goalList label {
+  font-size: 1.2em; /* 目標テキストのサイズを大きくする */
+  line-height: 1.8; /* 行の高さを調整して見やすくする */
+  vertical-align: middle; /* チェックボックスと高さを合わせる */
+  cursor: pointer;
+}
+
+#waterDisplay {
+  font-size: 1.3em; /* 水やり回数の表示サイズ */
+  margin-top: 20px;
+  margin-bottom: 20px;
+  font-weight: bold;
+  color: #4CAF50; /* 少し色を付けて目立たせる */
+}
+
+#flowerImage {
+  width: 250px; /* デスクトップでの花の画像サイズ */
+  height: auto;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  /* 画像が少し浮き上がるような影 */
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  border-radius: 8px;
+}
+
+#harvestBtn {
+  background-color: #90EE90; /* 収穫ボタンの色 */
+  margin-right: 10px; /* ボタン間のスペース */
+}
+#harvestBtn:hover {
+  background-color: #66BB6A;
+}
+
+#editGoalsBtn {
+  background-color: #ADD8E6; /* 編集ボタンの色 */
+}
+#editGoalsBtn:hover {
+  background-color: #87CEEB;
+}
+
+#backgroundSelector {
+  margin-top: 30px;
+  padding: 15px;
+  background-color: rgba(255, 255, 255, 0.7); /* 少し透明感のある背景 */
+  border-radius: 8px;
+  display: inline-block; /* 中央寄せ */
+}
+
+#backgroundSelector label,
+#backgroundSelector select {
+  font-size: 1.1em; /* 背景選択の文字サイズ */
+  padding: 8px;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+}
+
+/* レスポンシブデザインの調整 (390x844pxを意識して調整) */
 @media (max-width: 600px) {
   body {
-    padding: 10px;
+    padding: 15px; /* 全体のパディングを調整 */
+    font-size: 16px; /* 基本フォントサイズを少し小さめに調整してバランスを取る */
   }
 
   h1 {
-    font-size: 1.8em;
+    font-size: 2em; /* タイトルサイズを調整。bodyのフォントサイズが基準になる */
+    margin-bottom: 15px;
+  }
+
+  #dateDisplay {
+    font-size: 0.85em; /* 日付を少し小さめに */
+    margin-bottom: 10px;
+  }
+
+  .goal-inputs p {
+    font-size: 0.95em;
+    margin-bottom: 10px;
+  }
+
+  .goal-inputs input {
+    margin-bottom: 8px;
+    padding: 8px;
+    font-size: 1em;
+    width: 90%; /* 幅を画面の90%に設定 */
   }
 
   button {
-    width: 100%;
-    font-size: 0.9em;
+    width: 90%; /* ボタンの幅を調整 */
+    font-size: 1em;
+    padding: 10px 0; /* 左右のパディングを0にして、幅いっぱいに使う */
+    margin-top: 10px;
+    margin-bottom: 8px;
   }
 
-  img {
-    width: 150px;
+  #goalList {
+    margin-top: 15px;
+    margin-bottom: 20px;
+  }
+
+  #goalList input[type="checkbox"] {
+    transform: scale(1.1); /* モバイルでも少し大きく */
+  }
+
+  #goalList label {
+    font-size: 1em; /* 目標テキストのサイズ */
+    line-height: 1.5;
+  }
+
+  #waterDisplay {
+    font-size: 1.1em;
+    margin-top: 15px;
+    margin-bottom: 15px;
+  }
+
+  #flowerImage {
+    width: 180px; /* モバイルでの花の画像サイズ */
+    margin-top: 10px;
+    margin-bottom: 10px;
+  }
+
+  #harvestBtn {
+    margin-bottom: 8px;
+  }
+  #editGoalsBtn {
+    margin-bottom: 15px;
+  }
+
+  #backgroundSelector {
+    margin-top: 20px;
+    padding: 10px;
+  }
+
+  #backgroundSelector label,
+  #backgroundSelector select {
+    font-size: 0.95em;
+    padding: 6px;
   }
 }
