@@ -205,14 +205,11 @@ function checkGoals() {
     if (checkedCount === goals.length && goals.length > 0) {
         waterCount++;
         updateWaterDisplay();
-        saveGameState(); // 水やり回数が増えたので状態を保存
+        saveGameState();
 
-        // ★★★ このif文の条件のみ変更 ★★★
-        // waterCountが3の倍数になったら（かつステージが最大でなければ）花を成長させる
         if (waterCount % 3 === 0 && stage < 2) {
             advanceStage();
         }
-        // ★★★ ここまで変更 ★★★
 
         goals.forEach((_, index) => {
             document.getElementById(`checkbox${index}`).checked = false;
