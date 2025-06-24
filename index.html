@@ -4,7 +4,8 @@
   <meta charset="UTF-8" />
   <title>花を育てよう</title>
   <link rel="stylesheet" href="style.css" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"> </head>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
 <body>
   <h1>花を育てよう</h1>
   <div id="dateDisplay"></div>
@@ -19,9 +20,10 @@
     <div id="goalList"></div>
     <p id="waterDisplay">水やり回数: 0</p>
     <img id="flowerImage" src="" alt="flower" width="200" />
-    <br />
-    <button id="harvestBtn" class="hidden" onclick="harvest()">収穫する</button>
-    <button id="editGoalsBtn" onclick="editGoals()">目標を編集する</button>
+    <div class="action-buttons">
+      <button id="harvestBtn" class="hidden" onclick="harvest()">収穫する</button>
+      <button id="editGoalsBtn" onclick="editGoals()">目標を編集する</button>
+    </div>
     <div id="backgroundSelector">
       <label for="bgColor">背景を選んでください:</label>
       <select id="bgColor" onchange="changeBackgroundColor()">
